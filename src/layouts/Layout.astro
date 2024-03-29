@@ -19,32 +19,29 @@ const { title } = Astro.props;
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
   </head>
-  <body class="bg-neutral-900 flex flex-col h-screen text-white">
+  <body
+    class="bg-neutral-900 flex flex-col h-screen text-white md:before:block
+    before:hidden before:fixed before:top-0 before:left-0 before:h-[100dvh] before:-z-10 before:w-0
+    before:border-t-[100dvh] before:border-t-transparent before:border-t-solid
+    before:border-l-[200px] before:border-l-amber-400"
+  >
     <div class="flex-1 grid grid-cols-10 lg:grid-cols-8">
       <!-- Main Content Area -->
-      <div class="col-span-10 md:col-span-8 lg:col-span-7 p-4">
-        Main Content
-        <p>heloo</p>
-        <p>heloo</p>
-        <p>heloo</p>
-        <p>heloo</p>
-        <p>heloo</p>
-        <p>heloo</p>
-        <p>heloo</p>
-        <p>heloo</p>
+      <div
+        class="p-4 md:mt-16 mb-[105px] md:mb-0 md:mr-[105px] col-span-10 md:col-span-10 lg:col-span-8"
+      >
         <slot />
       </div>
       <!-- Sidebar -->
       <div
-        class="hidden md:flex col-span-0 md:col-span-2 lg:col-span-1 bg-transparent h-full text-white"
+        class="hidden md:flex bg-transparent h-full text-white
+        fixed top-0 right-0 bottom-0 z-10"
       >
         <Sidebar />
       </div>
       <!-- Bottom Navigation -->
-      <div
-        class="col-span-8 md:hidden fixed bottom-0 left-0 right-0"
-      >
-       <BottomNav />
+      <div class="col-span-8 md:hidden fixed bottom-0 left-0 right-0">
+        <BottomNav />
       </div>
     </div>
   </body>
