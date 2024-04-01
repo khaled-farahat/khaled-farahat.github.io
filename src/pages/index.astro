@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import Layout from "../layouts/Layout.astro";
 import profilePic from "../assets/profile2.png";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout title="Khaled Portfolio">
@@ -21,33 +22,50 @@ import profilePic from "../assets/profile2.png";
         development. I have a passion for learning and sharing my knowledge with
         others a public speaker and a blogger.
       </p>
-      <div class="flex space-x-4">
-        <a href="https://twitter.com/khaled_garbaya" class="text-blue-500"
-          >Twitter</a
+      <div class="flex gap-4">
+        <div
+          class="flex items-center gap-3 border relative border-amber-500 rounded-3xl pl-4 self-end cursor-pointer
+                before:h-full before:w-0 before:block before:absolute before:bg-amber-500 before:-z-10 before:right-0 before:top-0 before:transition-all hover:before:w-full
+                before:rounded-3xl"
         >
-        <a
-          href="https://www.linkedin.com/in/khaledgarbaya/"
-          class="text-blue-500">Linkedin</a
+          <p>Download CV</p>
+          <div
+            class="w-10 h-10 rounded-full bg-amber-500 p-3 flex justify-center items-center"
+          >
+            <Icon name="IcBaselineArrowForward" class="text-2xl" />
+          </div>
+        </div>
+        <div
+          class="flex items-center gap-3 border relative border-amber-500 rounded-3xl pl-4 self-end cursor-pointer
+                before:h-full before:w-0 before:block before:absolute before:bg-amber-500 before:-z-10 before:right-0 before:top-0 before:transition-all hover:before:w-full
+                before:rounded-3xl"
         >
+          <p>Projects</p>
+          <div
+            class="w-10 h-10 rounded-full bg-amber-500 p-3 flex justify-center items-center"
+          >
+            <Icon name="IcBaselineArrowForward" class="text-2xl" />
+          </div>
+        </div>
       </div>
     </div>
+
+    <style>
+      @media (max-width: 950px) {
+        .main {
+          gap: 50px;
+        }
+      }
+
+      @media (min-width: 767px) and (max-width: 950px) {
+        .main {
+          gap: 20px;
+        }
+
+        .main h1 {
+          font-size: 2rem;
+        }
+      }
+    </style>
   </div>
-
-  <style>
-    @media (max-width: 950px) {
-      .main {
-        gap: 50px;
-      }
-    }
-
-    @media (min-width: 767px) and (max-width: 950px) {
-      .main {
-        gap: 20px;
-      }
-
-      .main h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
 </Layout>
