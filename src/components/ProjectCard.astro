@@ -3,6 +3,7 @@ import { Icon } from "astro-icon/components";
 
 interface Props {
   title: string;
+  slug: string;
   description: string;
   publishDate: Date;
   tags: string[];
@@ -11,7 +12,7 @@ interface Props {
   link?: string;
   repo: string;
 }
-const { title, description, publishDate, tags, img, imgAlt, link, repo } =
+const { title, description, publishDate, tags, img, imgAlt, link, repo, slug } =
   Astro.props;
 
 const isLive = link ? true : false;
@@ -20,7 +21,7 @@ const isLive = link ? true : false;
 <div
   class="flex flex-col bg-zinc-800 rounded-lg justify-between border border-zinc-500"
 >
-  <a class="flex justify-center items-center flex-grow cursor-pointer">
+  <a class="flex justify-center items-center flex-grow cursor-pointer" href=`/projects/${slug}`>
     <img
       src={img}
       alt={imgAlt || "image"}

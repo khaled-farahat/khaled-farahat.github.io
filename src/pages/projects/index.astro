@@ -16,6 +16,7 @@ console.log(allProjects);
     <div class="flex w-full  m-auto items-center flex-wrap gap-8 justify-center">
       {allProjects.map((project) => (
         <ProjectCard
+          slug={project.slug}
           title={project.data.title}
           description={project.data.description}
           tags={project.data.tags}
