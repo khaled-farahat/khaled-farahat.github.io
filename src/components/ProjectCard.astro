@@ -1,0 +1,51 @@
+---
+import { Icon } from "astro-icon/components";
+
+interface Props {
+  title: string;
+  description: string;
+  publishDate: Date;
+  tags: string[];
+  img: string;
+  imgAlt?: string;
+  link?: string;
+  repo: string;
+}
+const { title, description, publishDate, tags, img, imgAlt, link, repo } =
+  Astro.props;
+
+const isLive = link ? true : false;
+---
+
+<div
+  class="flex flex-col bg-zinc-800 rounded-lg justify-between border border-zinc-500"
+>
+  <a class="flex justify-center items-center flex-grow cursor-pointer">
+    <img
+      src={img}
+      alt={imgAlt || "image"}
+      loading="lazy"
+      class="object-cover w-56 h-48 rounded-t-lg"
+    />
+  </a>
+  <div class="flex rounded-lg cursor-pointer">
+    <a
+      href={repo}
+      class=`flex flex-grow border border-zinc-500 justify-center gap-2 p-2 items-center ${isLive?"rounded-bl-lg":"rounded-b-lg"}`
+    >
+      <Icon name="CibGithub" />
+      <p>Github</p>
+    </a>
+    {
+      link && (
+        <a
+          href={link}
+          class="flex justify-center items-center border border-zinc-500 flex-grow rounded-br-lg p-2 gap-2"
+        >
+          <Icon name="StreamlineWifiAntenna" />
+          <p>Live</p>
+        </a>
+      )
+    }
+  </div>
+</div>

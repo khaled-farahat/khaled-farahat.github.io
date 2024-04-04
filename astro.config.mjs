@@ -7,4 +7,5 @@ import icon from "astro-icon";
 export default defineConfig({
   integrations: [tailwind(), icon()],
   server: {port: 3000},
+  output: "server",
 });

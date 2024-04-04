@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+import PageHeader from "../../components/PageHeader.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import Layout from "../../layouts/Layout.astro";
+
+const allProjects = await getCollection("work");
+console.log(allProjects);
+
+---
+
+<Layout title="projects">
+  <PageHeader title="my projects" bgText="works"/>
+  <div class="pt-6">
+    <ul></ul>
+    <div class="flex w-full  m-auto items-center flex-wrap gap-8 justify-center">
+      {allProjects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          description={project.data.description}
+          tags={project.data.tags}
+          img={project.data.img}
+          link={project.data.link}
+          publishDate={project.data.publishDate}
+          tags={project.data.tags}
+          repo={project.data.repo}
+        />
+      ))}
+      <!-- <div class="flex-grow"></div> -->
+    </div>
+  </div>
+</Layout>
