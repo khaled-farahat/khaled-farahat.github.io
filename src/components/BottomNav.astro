@@ -5,7 +5,7 @@ import { Icon } from "astro-icon/components";
 <div class="navigation text-neutral-950">
   <ul>
     <li class="list active">
-      <a href="#">
+      <a href="/">
         <span class="icon">
           <Icon name="IcRoundHome" />
         </span>
@@ -13,7 +13,7 @@ import { Icon } from "astro-icon/components";
       </a>
     </li>
     <li class="list">
-      <a href="#">
+      <a href="/about">
         <span class="icon">
           <Icon name="IcBaselinePerson" />
         </span>
@@ -21,7 +21,7 @@ import { Icon } from "astro-icon/components";
       </a>
     </li>
     <li class="list">
-      <a href="#">
+      <a href="/portfolio">
         <span class="icon">
           <Icon name="IcBaselineCardTravel" />
         </span>
@@ -29,7 +29,7 @@ import { Icon } from "astro-icon/components";
       </a>
     </li>
     <li class="list">
-      <a href="#">
+      <a href="/contact">
         <span class="icon">
           <Icon name="IcBaselineContactPage" />
         </span>
@@ -37,7 +37,7 @@ import { Icon } from "astro-icon/components";
       </a>
     </li>
     <li class="list">
-      <a href="#">
+      <a href="/blogs">
         <span class="icon">
           <Icon name="IcBaselineWechat" />
         </span>
@@ -51,6 +51,18 @@ import { Icon } from "astro-icon/components";
 <script>
   const list = document.querySelectorAll<HTMLElement>(".list");
   const indicator = document.querySelector<HTMLElement>(".indicator");
+
+  function setActivePath() {
+    const currentPath = window.location.pathname;
+    const activeItem = document.querySelector<HTMLElement>(`.list a[href="${currentPath}"]`)?.parentElement;
+    if (activeItem) {
+      list.forEach((item) => item.classList.remove("active"));
+      activeItem.classList.add("active");
+      adjustIndicator();
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", setActivePath);
 
   function adjustIndicator() {
     const activeItem = document.querySelector<HTMLElement>(".list.active");

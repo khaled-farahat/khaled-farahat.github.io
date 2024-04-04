@@ -4,19 +4,25 @@ import { Icon } from "astro-icon/components";
 interface Props {
   iconName: string;
   label: string;
+  to: string;
 }
 
-const { iconName, label } = Astro.props;
+const { iconName, label, to } = Astro.props;
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+const isActive = currentPath === to.slice(1);
+const activeClass = isActive ? "bg-amber-400" : "";
 ---
 
 <!-- <Icon name="IcRoundHome" /> -->
-<div
-  class="group flex items-center justify-start flex-row-reverse hover:bg-amber-400 text-white rounded-full cursor-pointer transition px-1 pl-2 w-fit"
+<a
+  class=`group flex items-center justify-start flex-row-reverse hover:bg-amber-400 text-white rounded-full cursor-pointer transition px-1 pl-2 w-fit`
+  href={to}
 >
   <div
-    class="flex items-center justify-center w-10 h-10 rounded-full bg-zinc-800 group-hover:bg-amber-400 transition px-1 p-2"
+    class=`flex items-center justify-center w-10 h-10 rounded-full bg-zinc-800 group-hover:bg-amber-400 transition px-1 p-2 ${activeClass}`
   >
     <Icon name={iconName} class="text-xl" />
   </div>
   <p class="opacity-0 group-hover:opacity-100">{label}</p>
-</div>
+</a>

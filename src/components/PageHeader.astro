@@ -1,0 +1,21 @@
+---
+interface Props {
+  title: string;
+  bgText: string;
+}
+
+const { title, bgText } = Astro.props;
+const words = title.split(' ');
+---
+
+<div class="p-4 m-auto flex justify-center items-center relative uppercase">
+  <h1 class="text-6xl font-bold">
+    {words[0]} <span class="text-amber-400">{words[1] && words[1]}</span>
+  </h1>
+  <p
+    class="text-zinc-800 font-extrabold text-8xl absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
+    -z-10"
+  >
+    {bgText}
+  </p>
+</div>
