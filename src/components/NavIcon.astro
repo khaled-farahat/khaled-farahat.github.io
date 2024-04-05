@@ -11,7 +11,7 @@ const { iconName, label, to } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1); // remove the first "/"
 const isActive = currentPath === to.slice(1);
-const activeClass = isActive ? "bg-amber-400" : "";
+const activeClass = isActive ? "bg-amber-400" : "bg-zinc-800";
 ---
 
 <!-- <Icon name="IcRoundHome" /> -->
@@ -20,7 +20,7 @@ const activeClass = isActive ? "bg-amber-400" : "";
   href={to}
 >
   <div
-    class=`flex items-center justify-center w-10 h-10 rounded-full bg-zinc-800 group-hover:bg-amber-400 transition px-1 p-2 ${activeClass}`
+    class=`flex items-center justify-center w-10 h-10 rounded-full group-hover:bg-amber-400 transition px-1 p-2 ${activeClass}`
   >
     <Icon name={iconName} class="text-xl" />
   </div>

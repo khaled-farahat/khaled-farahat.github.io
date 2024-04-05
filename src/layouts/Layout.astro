@@ -1,6 +1,7 @@
 ---
 import Sidebar from "../components/Sidebar.astro";
 import BottomNav from "../components/BottomNav.astro";
+import { ViewTransitions } from "astro:transitions";
 
 interface Props {
   title: string;
@@ -18,6 +19,7 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ViewTransitions />
   </head>
   <body
     class="bg-neutral-900 flex flex-col h-screen text-white "
@@ -26,6 +28,7 @@ const { title } = Astro.props;
       <!-- Main Content Area -->
       <div
         class="p-4 mb-[105px] md:mb-0 md:mr-[105px] col-span-10 md:col-span-10 lg:col-span-8"
+        transition:animate="slide"
       >
         <slot />
       </div>
@@ -37,7 +40,7 @@ const { title } = Astro.props;
         <Sidebar />
       </div>
       <!-- Bottom Navigation -->
-      <div class="col-span-8 md:hidden fixed bottom-0 left-0 right-0">
+      <div class="col-span-8 md:hidden fixed bottom-0 left-0 right-0 z-10">
         <BottomNav />
       </div>
     </div>

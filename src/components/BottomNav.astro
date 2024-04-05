@@ -1,10 +1,13 @@
 ---
 import { Icon } from "astro-icon/components";
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
 ---
 
-<div class="navigation text-neutral-950">
+<div class="navigation text-neutral-950" transition:persist>
   <ul>
-    <li class="list active">
+    <li class=`list ${!currentPath && "active"}`>
       <a href="/">
         <span class="icon">
           <Icon name="IcRoundHome" />
@@ -12,7 +15,7 @@ import { Icon } from "astro-icon/components";
         <span class="text">Home</span>
       </a>
     </li>
-    <li class="list">
+    <li class=`list ${currentPath==='about' && "active"}`>
       <a href="/about">
         <span class="icon">
           <Icon name="IcBaselinePerson" />
@@ -20,7 +23,7 @@ import { Icon } from "astro-icon/components";
         <span class="text">About</span>
       </a>
     </li>
-    <li class="list">
+    <li class=`list ${currentPath==='projects' && "active"}`>
       <a href="/projects">
         <span class="icon">
           <Icon name="IcBaselineCardTravel" />
@@ -28,7 +31,7 @@ import { Icon } from "astro-icon/components";
         <span class="text">Portfolio</span>
       </a>
     </li>
-    <li class="list">
+    <li class=`list ${currentPath==='contact' && "active"}`>
       <a href="/contact">
         <span class="icon">
           <Icon name="IcBaselineContactPage" />
@@ -36,7 +39,7 @@ import { Icon } from "astro-icon/components";
         <span class="text">Contact</span>
       </a>
     </li>
-    <li class="list">
+    <li class=`list ${currentPath==='blogs' && "active"}`>
       <a href="/blogs">
         <span class="icon">
           <Icon name="IcBaselineWechat" />
@@ -54,7 +57,9 @@ import { Icon } from "astro-icon/components";
 
   function setActivePath() {
     const currentPath = window.location.pathname;
-    const activeItem = document.querySelector<HTMLElement>(`.list a[href="${currentPath}"]`)?.parentElement;
+    const activeItem = document.querySelector<HTMLElement>(
+      `.list a[href="${currentPath}"]`
+    )?.parentElement;
     if (activeItem) {
       list.forEach((item) => item.classList.remove("active"));
       activeItem.classList.add("active");
@@ -94,6 +99,11 @@ import { Icon } from "astro-icon/components";
   list.forEach((item) => item.addEventListener("click", activeLink));
 
   window.addEventListener("DOMContentLoaded", () => {
+    const indicator = document.querySelector<HTMLElement>(".indicator");
+    // Set display to block to make the indicator appear
+    if (indicator) indicator.style.display = "block";
+    // add cause no shared state
+    // -----------------------------
     const activeItem = document.querySelector<HTMLElement>(".list.active");
     const icon = activeItem?.querySelector<HTMLElement>(".icon");
     const iconRect = icon?.getBoundingClientRect();
@@ -142,7 +152,6 @@ import { Icon } from "astro-icon/components";
     height: 10px;
     z-index: -10;
     background-color: #171717;
-
   }
 
   .navigation ul {
@@ -201,6 +210,7 @@ import { Icon } from "astro-icon/components";
 
   .indicator {
     position: absolute;
+    display: none; /*remove this line to see the indicator*/
     top: -50%;
     left: 0px;
     width: 70px;
