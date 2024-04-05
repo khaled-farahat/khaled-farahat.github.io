@@ -1,0 +1,12 @@
+---
+import PageHeader from "../components/PageHeader.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="blogs">
+  <PageHeader title="My Blogs" bgText="posts" />
+  <div class="flex flex-col justify-center items-center mt-8 w-full h-2/3">
+    <p class="text-4xl text-zinc-600 capitalize" >No posts published yet</p>
+    <p class="text-2xl text-amber-500 uppercase">Stay tuned</p>
+  </div>
+</Layout>
