@@ -8,10 +8,10 @@ import icon from "astro-icon";
 export default defineConfig({
   integrations: [tailwind(), icon()],
   server: {port: 3000},
-  output: "server",
+  output: "static",
   adapter: node({
     mode: 'standalone'
   }),
-  site: 'https://khaled-farahat.github.io',
+  // site: 'https://khaled-farahat.github.io',
   base: '/',
 });
