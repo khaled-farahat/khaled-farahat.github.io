@@ -1,17 +1,18 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
-import node from '@astrojs/node';
-
+// import node from '@astrojs/node';
 import icon from "astro-icon";
+
+import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), icon()],
-  server: {port: 3000},
+  server: {
+    port: 3000
+  },
   output: "server",
-  adapter: node({
-    mode: 'standalone'
-  }),
-  site: 'https://khaled-farahat.github.io',
+  adapter: netlify(),
+  // site: 'https://khaled-farahat.github.io'
   // base: '/',
 });
