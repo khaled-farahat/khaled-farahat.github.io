@@ -13,5 +13,5 @@ export default defineConfig({
     mode: 'standalone'
   }),
   site: 'https://khaled-farahat.github.io',
-  base: '/',
+  // base: '/',
 });
