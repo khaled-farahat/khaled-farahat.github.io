@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
-import node from '@astrojs/node';
+// import node from '@astrojs/node';
 
 import icon from "astro-icon";
 
@@ -8,10 +8,13 @@ import icon from "astro-icon";
 export default defineConfig({
   integrations: [tailwind(), icon()],
   server: {port: 3000},
-  output: "server",
-  adapter: node({
-    mode: 'standalone'
-  }),
+  output: "static",
+  // adapter: node({
+  //   mode: 'standalone'
+  // }),
+  build: {
+    assets: 'astro'
+  },
   site: 'https://khaled-farahat.github.io',
   // base: '/',
 });

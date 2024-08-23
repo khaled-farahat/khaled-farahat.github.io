@@ -1,10 +1,41 @@
 ---
-import {getCollection, getEntryBySlug} from "astro:content"
+import {getCollection, getEntry} from "astro:content"
 import Layout from "../../layouts/Layout.astro"
+import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPaths } from 'astro';
+
+// export async function getStaticPaths(): Promise<{ params: { slug: string } }[]> {
+//   const posts = await Astro.glob<{ frontmatter: { title: string } }>('../../content/work/*.md');
+
+//   const slugs = posts.map(post => {
+//     const { title } = post.frontmatter;
+//     const slug = title;
+//     return { params: { slug } };
+//   });
+
+//   return slugs;
+// }
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('work');
+  return posts.map((post) => {
+    return {
+      params: { slug: post.slug },
+      props: {title: post.data.title },
+    };
+  });
+}) satisfies GetStaticPaths;
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { slug } = Astro.params as Params;
+
+const { title } = Astro.props;
 
 
-const {slug} = Astro.params
-const post = await getEntryBySlug("work", slug as string)
+// server side rendering
+// const {slug} = Astro.params
+const post = await getEntry("work", slug as string)
 
 if (!post) {
     return Astro.redirect("/404")
