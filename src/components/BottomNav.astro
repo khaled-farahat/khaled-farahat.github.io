@@ -2,12 +2,13 @@
 import { Icon } from "astro-icon/components";
 
 const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname.slice(1); // remove the first "/"
+// Normalize path by removing leading and trailing slashes for consistent comparison
+const currentPath = pathname.replace(/^\/|\/$/g, '');
 ---
 
 <div class="navigation text-neutral-950">
   <ul>
-    <li class=`list ${!currentPath && "active"}`>
+    <li class=`list ${currentPath === '' && "active"}`>
       <a href="/">
         <span class="icon">
           <Icon name="IcRoundHome" />
@@ -15,7 +16,7 @@ const currentPath = pathname.slice(1); // remove the first "/"
         <span class="text">Home</span>
       </a>
     </li>
-    <li class=`list ${currentPath==='about' && "active"}`>
+    <li class=`list ${(currentPath === 'about' || currentPath.startsWith('about/')) && "active"}`>
       <a href="/about">
         <span class="icon">
           <Icon name="IcBaselinePerson" />
@@ -23,7 +24,7 @@ const currentPath = pathname.slice(1); // remove the first "/"
         <span class="text">About</span>
       </a>
     </li>
-    <li class=`list ${currentPath==='projects' && "active"}`>
+    <li class=`list ${(currentPath === 'projects' || currentPath.startsWith('projects/')) && "active"}`>
       <a href="/projects">
         <span class="icon">
           <Icon name="IcBaselineCardTravel" />
@@ -31,7 +32,7 @@ const currentPath = pathname.slice(1); // remove the first "/"
         <span class="text">Portfolio</span>
       </a>
     </li>
-    <li class=`list ${currentPath==='contact' && "active"}`>
+    <li class=`list ${(currentPath === 'contact' || currentPath.startsWith('contact/')) && "active"}`>
       <a href="/contact">
         <span class="icon">
           <Icon name="IcBaselineContactPage" />
@@ -39,7 +40,7 @@ const currentPath = pathname.slice(1); // remove the first "/"
         <span class="text">Contact</span>
       </a>
     </li>
-    <li class=`list ${currentPath==='blogs' && "active"}`>
+    <li class=`list ${(currentPath === 'blogs' || currentPath.startsWith('blogs/')) && "active"}`>
       <a href="/blogs">
         <span class="icon">
           <Icon name="IcBaselineWechat" />

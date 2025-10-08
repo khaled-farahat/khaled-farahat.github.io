@@ -9,8 +9,14 @@ interface Props {
 
 const { iconName, label, to } = Astro.props;
 const pathname = new URL(Astro.request.url).pathname;
-const currentPath = pathname.slice(1); // remove the first "/"
-const isActive = currentPath === to.slice(1);
+// Normalize paths by removing leading and trailing slashes for consistent comparison
+const currentPath = pathname.replace(/^\/|\/$/g, '');
+const targetPath = to.replace(/^\/|\/$/g, '');
+
+// Check if active: exact match or if current path starts with target path
+const isActive = targetPath === ""
+  ? currentPath === ""
+  : currentPath === targetPath || currentPath.startsWith(targetPath + "/");
 const activeClass = isActive ? "bg-amber-400" : "bg-zinc-800";
 ---
 
