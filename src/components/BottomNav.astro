@@ -226,44 +226,7 @@ const currentPath = pathname.replace(/^\/|\/$/g, '');
     z-index: 0; /* Behind the icon */
   }
 
-  .navigation ul li.active::after {
-    content: "";
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 20px;
-    background: transparent;
-    z-index: 0;
-  }
-
-  /* Side shadows for the indicator */
-  .navigation ul li.active .icon::before {
-    content: "";
-    position: absolute;
-    top: -55px;
-    left: -45px;
-    width: 20px;
-    height: 20px;
-    background: transparent;
-    border-top-right-radius: 20px;
-    box-shadow: 1px -10px 0 0 rgb(23 23 23);
-    z-index: 0; /* Behind the icon */
-  }
-
-  .navigation ul li.active .icon::after {
-    content: "";
-    position: absolute;
-    top: -55px;
-    right: -45px;
-    width: 20px;
-    height: 20px;
-    background: transparent;
-    border-top-left-radius: 20px;
-    box-shadow: -1px -10px 0 0 rgb(23 23 23);
-    z-index: 0; /* Behind the icon */
-  }
+  /* Arches removed - couldn't position correctly with pure CSS */
 
   /* Old JavaScript-based indicator - commented out */
   /* .indicator {
