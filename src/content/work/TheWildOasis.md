@@ -1,10 +1,10 @@
 ---
 title: TheWildOasis
-description: A web application that helps users learn about the world around them.
+description: The Wild Oasis Hotel Management App aims to streamline daily operations, enhance user experience, and provide valuable insights to hotel staff for efficient decision-making.
 publishDate: 2020-07-01
-tags: [web, javascript, react, nodejs, express, mongodb, mongoose, heroku]
+tags: [react, react-router, react-query, supabase, styled-components, typescript]
 img: /work/thewildoasis.png
-imgAlt: WorldWise
+imgAlt: The Wild Oasis
 link: https://the-wild-oasis-ts.netlify.app/
 repo: https://github.com/khaled-farahat/the-wild-oasis
 ---

@@ -1,0 +1,53 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  img?: string;
+  imgAlt?: string;
+  tags?: string[];
+  link?: string;
+  repo?: string;
+  publishDate?: string | Date;
+}
+
+const { id, title, description, img, imgAlt, tags, link, repo, publishDate } = Astro.props as Props;
+---
+
+<dialog id={id} class="rounded-xl p-6 bg-neutral-900 text-amber-400 max-w-md w-[90%] backdrop:bg-black/60" role="dialog" aria-modal="true">
+  <h2 class="text-xl font-bold mb-3">{title}</h2>
+  {img && <img src={img} alt={imgAlt || title} class="mb-3 w-full object-cover rounded" />}
+  <p class="mb-4">{description}</p>
+  {tags && (
+    <div class="flex flex-wrap gap-2 mb-3">
+      {tags.map(t => (
+        <a href={`/search?tag=${encodeURIComponent(t)}`} class="px-2 py-1 bg-zinc-800 rounded text-sm text-amber-400 hover:bg-amber-500/10">{t}</a>
+      ))}
+    </div>
+  )}
+  <div class="flex gap-3 mb-3">
+    {repo && <a href={repo} target="_blank" rel="noopener" class="underline">GitHub</a>}
+    {link && <a href={link} target="_blank" rel="noopener" class="underline">Live</a>}
+  </div>
+  {publishDate && <p class="text-sm text-zinc-400">Published: {String(publishDate)}</p>}
+
+  <form method="dialog" class="mt-4">
+    <button type="submit" class="bg-amber-500 text-neutral-900 px-4 py-2 rounded">Close</button>
+  </form>
+
+  <script is:inline>
+    (function () {
+      const dialog = document.getElementById('${id}');
+      if (!dialog) return;
+      // close on backdrop click
+      dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.close();
+      });
+      // close on Escape
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && dialog.open) dialog.close();
+      });
+    })();
+  </script>
+</dialog>
+

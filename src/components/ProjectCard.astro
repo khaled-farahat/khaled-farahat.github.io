@@ -1,52 +1,123 @@
 ---
 import { Icon } from "astro-icon/components";
+import type { CollectionEntry } from "astro:content";
+import ProjectModal from "./ProjectModal.astro";
 
 interface Props {
-  title: string;
-  slug: string;
-  description: string;
-  publishDate: Date;
-  tags: string[];
-  img: string;
-  imgAlt?: string;
-  link?: string;
-  repo: string;
+  project: CollectionEntry<"work">;
 }
-const { title, description, publishDate, tags, img, imgAlt, link, repo, slug } =
-  Astro.props;
+const project = Astro.props.project as Props["project"];
 
-const isLive = link ? true : false;
+const { slug, data } = project;
+const { title, description, img, imgAlt, link, repo, tags, publishDate } = data;
+
+const isLive = Boolean(link);
+
+const dialogId = `dialog-${slug}`;
 ---
 
 <div
-  class="flex flex-col bg-zinc-800 rounded-lg justify-between border border-zinc-500"
+  class="max-w-xs w-full p-6 rounded-3xl bg-neutral-900/60 backdrop-blur-xl border border-amber-500/20 shadow-md shadow-amber-500/20 relative overflow-hidden hover:scale-[1.02] transition-transform"
+  role="button"
+  tabindex="0"
+  onclick={`document.getElementById('${dialogId}').showModal()`}
+  onkeydown={`if(event.key==='Enter'||event.key===' '){ event.preventDefault(); document.getElementById('${dialogId}').showModal(); }`}
 >
-  <a class="flex justify-center items-center flex-grow cursor-pointer" href=`/projects/${slug}`>
-    <img
-      src={img}
-      alt={imgAlt || "image"}
-      loading="lazy"
-      class="object-cover w-56 h-48 rounded-t-lg"
-    />
-  </a>
-  <div class="flex rounded-lg cursor-pointer">
+  <div
+    class="absolute top-0 left-0 w-32 h-32 bg-amber-400/40 rounded-full blur-3xl"
+  >
+  </div>
+  <!-- Image -->
+  <div class="rounded-2xl overflow-hidden mb-6 mx-4 relative">
+    <!-- Image with gradient overlay -->
+    <div class="relative">
+      <img src={img} alt="Project preview" class="w-full h-48 object-cover" />
+      <!-- Gradient overlay for glass effect -->
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-amber-500/20 via-amber-500/10 to-neutral-900/60"
+      >
+      </div>
+      <!-- Top-left glow effect -->
+      <div
+        class="absolute top-0 left-0 w-32 h-32 bg-amber-400/40 rounded-full blur-3xl"
+      >
+      </div>
+    </div>
+  </div>
+
+  <!-- Title -->
+  <h2 class="text-lg font-semibold text-amber-400 mb-2">{title}</h2>
+
+  <!-- Description -->
+  <p
+    class="text-sm text-gray-400 mb-4 line-clamp-2 cursor-text"
+    onclick="event.stopPropagation()"
+  >
+    {description}
+  </p>
+
+  <!-- Publish Date -->
+  <!-- <div class="text-xs text-gray-500 mb-4">
+    <span class="block">Publish date</span>
+    <span class="text-gray-400">{publishDate}</span>
+  </div> -->
+
+  <!-- Tags -->
+  <div
+    class="flex flex-wrap gap-1 justify-center mb-6 cursor-default"
+    onclick="event.stopPropagation()"
+  >
+    {
+      tags
+        .slice(0, 4)
+        .map((tag) => (
+          <a
+            href={`/search?tag=${encodeURIComponent(tag)}`}
+            class="px-2 py-0.5 rounded-full text-amber-400 text-xs border border-amber-500/30 bg-amber-500/10 hover:bg-amber-500/20"
+            onclick="event.stopPropagation()"
+          >
+            {tag}
+          </a>
+        ))
+    }
+  </div>
+
+  <!-- Buttons -->
+  <div class="flex justify-center gap-4">
     <a
       href={repo}
-      class=`flex flex-grow border border-zinc-500 justify-center gap-2 p-2 items-center ${isLive?"rounded-bl-lg":"rounded-b-lg"}`
+      class="flex items-center gap-2 px-8 py-2 rounded-xl border border-amber-500/30 text-amber-400 text-sm font-medium hover:bg-amber-500/10 transition-colors"
+      target="_blank"
+      rel="noopener noreferrer"
+      onclick="event.stopPropagation()"
     >
       <Icon name="CibGithub" />
-      <p>Github</p>
+      Github
     </a>
     {
-      link && (
+      isLive && (
         <a
           href={link}
-          class="flex justify-center items-center border border-zinc-500 flex-grow rounded-br-lg p-2 gap-2"
+          class="flex items-center gap-2 px-8 py-2 rounded-xl border border-amber-500/30 bg-amber-500/20 text-amber-400 text-sm font-medium hover:bg-amber-500/30 transition-colors"
+          target="_blank"
+          rel="noopener noreferrer"
+          onclick="event.stopPropagation()"
         >
           <Icon name="StreamlineWifiAntenna" />
-          <p>Live</p>
+          Live
         </a>
       )
     }
   </div>
+  <ProjectModal
+    id={dialogId}
+    title={title}
+    description={description}
+    img={img}
+    imgAlt={imgAlt}
+    tags={tags}
+    link={link}
+    repo={repo}
+    publishDate={publishDate}
+  />
 </div>

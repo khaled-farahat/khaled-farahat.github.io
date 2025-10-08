@@ -3,18 +3,6 @@ import {getCollection, getEntry} from "astro:content"
 import Layout from "../../layouts/Layout.astro"
 import type { InferGetStaticParamsType, InferGetStaticPropsType, GetStaticPaths } from 'astro';
 
-// export async function getStaticPaths(): Promise<{ params: { slug: string } }[]> {
-//   const posts = await Astro.glob<{ frontmatter: { title: string } }>('../../content/work/*.md');
-
-//   const slugs = posts.map(post => {
-//     const { title } = post.frontmatter;
-//     const slug = title;
-//     return { params: { slug } };
-//   });
-
-//   return slugs;
-// }
-
 export const getStaticPaths = (async () => {
   const posts = await getCollection('work');
   return posts.map((post) => {

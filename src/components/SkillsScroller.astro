@@ -4,18 +4,19 @@ import { Icon } from "astro-icon/components";
 
 <div class="scroller" data-animated="true" data-speed="fast">
   <ul class="scroller__inner">
-    <li><Icon name="BxlReact" class="text-4xl" /></li>
-    <li><Icon name="SimpleIconsVuedotjs" class="text-4xl" /></li>
-    <li><Icon name="FileIconsNextjs" class="text-4xl" /></li>
-    <li><Icon name="DeviconPlainAstroWordmark" class="text-4xl" /></li>
-    <li><Icon name="MdiLanguageCss3" class="text-4xl" /></li>
-    <li><Icon name="FileIconsTailwind" class="text-4xl" /></li>
-    <li><Icon name="DeviconExpress" class="text-4xl" /></li>
-    <li><Icon name="MdiLanguageJavascript" class="text-4xl" /></li>
-    <li><Icon name="SimpleIconsNodedotjs" class="text-4xl" /></li>
-    <li><Icon name="TeenyiconsTypescriptOutline" class="text-4xl" /></li>
-    <li><Icon name="MdiLanguageJava" class="text-4xl" /></li>
-    <li><Icon name="MdiLanguageCpp" class="text-4xl" /></li>
+    <!-- Map icons to tag names and link to /search?tag=... -->
+    <li><a href="/search?tag=React"><Icon name="BxlReact" class="text-4xl" /></a></li>
+    <li><a href="/search?tag=Vue"><Icon name="SimpleIconsVuedotjs" class="text-4xl" /></a></li>
+    <li><a href="/search?tag=Next.js"><Icon name="FileIconsNextjs" class="text-4xl" /></a></li>
+    <li><a href="/search?tag=Astro"><Icon name="DeviconPlainAstroWordmark" class="text-4xl" /></a></li>
+    <li><a href="/search?tag=CSS"><Icon name="MdiLanguageCss3" class="text-4xl" /></a></li>
+    <li><a href="/search?tag=Tailwind"><Icon name="FileIconsTailwind" class="text-4xl" /></a></li>
+    <li><a href="/search?tag=Express"><Icon name="DeviconExpress" class="text-4xl" /></a></li>
+    <li><a href="/search?tag=JavaScript"><Icon name="MdiLanguageJavascript" class="text-4xl" /></a></li>
+    <li><a href="/search?tag=Node.js"><Icon name="SimpleIconsNodedotjs" class="text-4xl" /></a></li>
+    <li><a href="/search?tag=TypeScript"><Icon name="TeenyiconsTypescriptOutline" class="text-4xl" /></a></li>
+    <li><a href="/search?tag=Java"><Icon name="MdiLanguageJava" class="text-4xl" /></a></li>
+    <li><a href="/search?tag=C++"><Icon name="MdiLanguageCpp" class="text-4xl" /></a></li>
   </ul>
 </div>
 <script>

@@ -1,10 +1,10 @@
 ---
 title: Electro
-description: A web application that helps users learn about the world around them.
+description: Electro is a landscape website for presenting and sharing photography.
 publishDate: 2020-07-01
-tags: [web, javascript, react, nodejs, express, mongodb, mongoose, heroku]
+tags: [react, styled-components, javascript, css]
 img: /work/Electro.png
-imgAlt: WorldWise
+imgAlt: Electro
 link: https://khaled-farahat.github.io/Electro/
 repo: https://github.com/khaled-farahat/Electro
 ---

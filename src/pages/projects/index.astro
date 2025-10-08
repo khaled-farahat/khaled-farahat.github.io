@@ -11,19 +11,10 @@ const allProjects = await getCollection("work");
 <Layout title="projects">
   <PageHeader title="my projects" bgText="works"/>
   <div class="pt-6">
-    <ul></ul>
     <div class="flex w-full  m-auto items-center flex-wrap gap-8 justify-center">
       {allProjects.map((project) => (
         <ProjectCard
-          slug={project.slug}
-          title={project.data.title}
-          description={project.data.description}
-          tags={project.data.tags}
-          img={project.data.img}
-          link={project.data.link}
-          publishDate={project.data.publishDate}
-          tags={project.data.tags}
-          repo={project.data.repo}
+          project={project}
         />
       ))}
       <!-- <div class="flex-grow"></div> -->
