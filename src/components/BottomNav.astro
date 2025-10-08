@@ -5,7 +5,7 @@ const pathname = new URL(Astro.request.url).pathname;
 const currentPath = pathname.slice(1); // remove the first "/"
 ---
 
-<div class="navigation text-neutral-950" transition:persist>
+<div class="navigation text-neutral-950">
   <ul>
     <li class=`list ${!currentPath && "active"}`>
       <a href="/">
@@ -47,11 +47,12 @@ const currentPath = pathname.slice(1); // remove the first "/"
         <span class="text">Blogs</span>
       </a>
     </li>
-    <div class="indicator"></div>
+    <!-- <div class="indicator"></div> -->
   </ul>
 </div>
 
-<script>
+<!-- JavaScript for indicator positioning - commented out for pure CSS approach -->
+<!-- <script>
   const list = document.querySelectorAll<HTMLElement>(".list");
   const indicator = document.querySelector<HTMLElement>(".indicator");
 
@@ -129,7 +130,7 @@ const currentPath = pathname.slice(1); // remove the first "/"
       (iconRect?.left ?? 0) - indicatorWidth / 2 + iconWidth / 2;
     if (indicator) indicator.style.transform = `translateX(${xPosition}px)`;
   });
-</script>
+</script> -->
 
 <style>
   .navigation {
@@ -184,8 +185,9 @@ const currentPath = pathname.slice(1); // remove the first "/"
     line-height: 75px;
     font-size: 2em;
     text-align: center;
-    transition: 0.5s;
+    /* transition: 0.5s; */ /* Commented out animation */
     margin: 20px 0;
+    z-index: 10; /* Icon appears above the yellow indicator */
   }
 
   .navigation ul li.active a .icon {
@@ -197,7 +199,7 @@ const currentPath = pathname.slice(1); // remove the first "/"
     font-weight: 400;
     font-size: 1em;
     letter-spacing: 0.05em;
-    transition: 0.5s;
+    /* transition: 0.5s; */ /* Commented out animation */
     opacity: 0;
     font-weight: bold;
     transform: translateY(20px);
@@ -208,9 +210,64 @@ const currentPath = pathname.slice(1); // remove the first "/"
     transform: translateY(10px);
   }
 
-  .indicator {
+  /* CSS-only indicator - shows above active list item */
+  .navigation ul li.active::before {
+    content: "";
     position: absolute;
-    display: none; /*remove this line to see the indicator*/
+    top: -50%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    background-color: #fbbf24;
+    border-radius: 50%;
+    border: 6px solid rgb(23 23 23);
+    z-index: 0; /* Behind the icon */
+  }
+
+  .navigation ul li.active::after {
+    content: "";
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 20px;
+    background: transparent;
+    z-index: 0;
+  }
+
+  /* Side shadows for the indicator */
+  .navigation ul li.active .icon::before {
+    content: "";
+    position: absolute;
+    top: -55px;
+    left: -45px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-right-radius: 20px;
+    box-shadow: 1px -10px 0 0 rgb(23 23 23);
+    z-index: 0; /* Behind the icon */
+  }
+
+  .navigation ul li.active .icon::after {
+    content: "";
+    position: absolute;
+    top: -55px;
+    right: -45px;
+    width: 20px;
+    height: 20px;
+    background: transparent;
+    border-top-left-radius: 20px;
+    box-shadow: -1px -10px 0 0 rgb(23 23 23);
+    z-index: 0; /* Behind the icon */
+  }
+
+  /* Old JavaScript-based indicator - commented out */
+  /* .indicator {
+    position: absolute;
+    display: none;
     top: -50%;
     left: 0px;
     width: 70px;
@@ -243,5 +300,5 @@ const currentPath = pathname.slice(1); // remove the first "/"
     background: transparent;
     border-top-left-radius: 20px;
     box-shadow: -1px -10px 0 0 rgb(23 23 23);
-  }
+  } */
 </style>

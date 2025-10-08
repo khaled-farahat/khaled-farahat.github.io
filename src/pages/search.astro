@@ -25,8 +25,8 @@ import PageHeader from "../components/PageHeader.astro";
   import DOMPurify from "dompurify";
   import Fuse from "fuse.js";
 
-  let SEARCH_DATA;
-  let FUSE_INSTANCE;
+  let SEARCH_DATA: any[] | null = null;
+  let FUSE_INSTANCE: Fuse<any> | null = null;
   const FUSE_OPTIONS = {
     includeScore: true,
     shouldSort: true,
@@ -39,6 +39,10 @@ import PageHeader from "../components/PageHeader.astro";
       {
         name: "tags",
         weight: 0.75,
+      },
+      {
+        name: "description",
+        weight: 0.5,
       },
     ],
   };
@@ -76,9 +80,9 @@ import PageHeader from "../components/PageHeader.astro";
     window.history.replaceState(null, "", url);
   }
 
-  function generateSearchList(results) {
+  function generateSearchList(results: any[]) {
     return results
-      .map((r) => {
+      .map((r: any) => {
         const { title, description, date, slug, img, tags } = r.item;
         const dateAsDate = new Date(date);
         const formattedDate = dateAsDate.toLocaleDateString("en-us", {
@@ -88,7 +92,7 @@ import PageHeader from "../components/PageHeader.astro";
         });
 
         const tagsHtml = tags && tags.length > 0
-          ? tags.map(tag => `<span class="inline-block px-2 py-0.5 rounded-full text-xs border border-amber-500/30 bg-amber-500/10 text-amber-400">${tag}</span>`).join('')
+          ? tags.map((tag: string) => `<span class="inline-block px-2 py-0.5 rounded-full text-xs border border-amber-500/30 bg-amber-500/10 text-amber-400">${tag}</span>`).join('')
           : '';
 
         return `<li class="mb-4">
@@ -108,7 +112,7 @@ import PageHeader from "../components/PageHeader.astro";
       .join("");
   }
 
-  async function fetchSearchResults(search) {
+  async function fetchSearchResults(search: string) {
     if (search.length === 0) return;
     resultsList.innerHTML = SPINNER;
     if (!SEARCH_DATA) {
@@ -138,7 +142,7 @@ import PageHeader from "../components/PageHeader.astro";
   // event listeners
   window.addEventListener("DOMContentLoaded", () => {
     const urlParams = DOMPurify.sanitize(
-      new URLSearchParams(window.location.search).get("q")
+      new URLSearchParams(window.location.search).get("q") || ""
     );
     fetchSearchResults(urlParams);
     updateDocumentTitle(urlParams);
