@@ -5,18 +5,114 @@ import { Icon } from "astro-icon/components";
 <div class="scroller" data-animated="true" data-speed="fast">
   <ul class="scroller__inner">
     <!-- Map icons to tag names and link to /search?tag=... -->
-    <li><a href="/search?q=React"><Icon name="BxlReact" class="text-4xl" /></a></li>
-    <li><a href="/search?q=Vue"><Icon name="SimpleIconsVuedotjs" class="text-4xl" /></a></li>
-    <li><a href="/search?q=Next.js"><Icon name="FileIconsNextjs" class="text-4xl" /></a></li>
-    <li><a href="/search?q=Astro"><Icon name="DeviconPlainAstroWordmark" class="text-4xl" /></a></li>
-    <li><a href="/search?q=CSS"><Icon name="MdiLanguageCss3" class="text-4xl" /></a></li>
-    <li><a href="/search?q=Tailwind"><Icon name="FileIconsTailwind" class="text-4xl" /></a></li>
-    <li><a href="/search?q=Express"><Icon name="DeviconExpress" class="text-4xl" /></a></li>
-    <li><a href="/search?q=JavaScript"><Icon name="MdiLanguageJavascript" class="text-4xl" /></a></li>
-    <li><a href="/search?q=Node.js"><Icon name="SimpleIconsNodedotjs" class="text-4xl" /></a></li>
-    <li><a href="/search?q=TypeScript"><Icon name="TeenyiconsTypescriptOutline" class="text-4xl" /></a></li>
-    <li><a href="/search?q=Java"><Icon name="MdiLanguageJava" class="text-4xl" /></a></li>
-    <li><a href="/search?q=C++"><Icon name="MdiLanguageCpp" class="text-4xl" /></a></li>
+    <li>
+      <a href={`/search?q=${encodeURIComponent("React")}`}
+        ><Icon
+          name="BxlReact"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
+    <li>
+      <a href="/search?q=Vue"
+        ><Icon
+          name="SimpleIconsVuedotjs"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
+    <li>
+      <a href="/search?q=Next.js"
+        ><Icon
+          name="FileIconsNextjs"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
+    <li>
+      <a href="/search?q=Astro"
+        ><Icon
+          name="DeviconPlainAstroWordmark"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
+    <li>
+      <a href="/search?q=CSS"
+        ><Icon
+          name="MdiLanguageCss3"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
+    <li>
+      <a href="/search?q=Tailwind"
+        ><Icon
+          name="FileIconsTailwind"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
+    <li>
+      <a href="/search?q=Express"
+        ><Icon
+          name="DeviconExpress"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
+    <li>
+      <a href="/search?q=JavaScript"
+        ><Icon
+          name="MdiLanguageJavascript"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
+    <li>
+      <a href="/search?q=Node.js"
+        ><Icon
+          name="SimpleIconsNodedotjs"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
+    <li>
+      <a href="/search?q=TypeScript"
+        ><Icon
+          name="TeenyiconsTypescriptOutline"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
+    <li>
+      <a href="/search?q=Java"
+        ><Icon
+          name="MdiLanguageJava"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
+    <li>
+      <a href="/search?q=C++"
+        ><Icon
+          name="MdiLanguageCpp"
+          class="text-4xl"
+          onclick="event.stopPropagation()"
+        /></a
+      >
+    </li>
   </ul>
 </div>
 <script>
