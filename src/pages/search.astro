@@ -131,7 +131,7 @@ import PageHeader from "../components/PageHeader.astro";
       FUSE_INSTANCE = new Fuse(SEARCH_DATA, FUSE_OPTIONS);
     }
     if (!FUSE_INSTANCE) return;
-    console.log(FUSE_INSTANCE);
+    // console.log(FUSE_INSTANCE);
     const searchResult = FUSE_INSTANCE.search(search);
     resultsList.innerHTML =
       searchResult.length > 0
