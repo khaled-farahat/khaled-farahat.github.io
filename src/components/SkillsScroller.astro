@@ -105,7 +105,7 @@ import { Icon } from "astro-icon/components";
       >
     </li>
     <li>
-      <a href="/search?q=C++"
+      <a href={`/search?q=${encodeURIComponent("C++")}`}
         ><Icon
           name="MdiLanguageCpp"
           class="text-4xl"
