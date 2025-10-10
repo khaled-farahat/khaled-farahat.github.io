@@ -1,4 +1,6 @@
 ---
+import { Image } from 'astro:assets';
+
 interface Props {
   id: string;
   title: string;
@@ -16,7 +18,7 @@ const { id, title, description, img, imgAlt, tags, link, repo, publishDate } = A
 
 <dialog id={id} class="rounded-xl p-6 bg-neutral-900 text-amber-400 max-w-md w-[90%] backdrop:bg-black/60" role="dialog" aria-modal="true">
   <h2 class="text-xl font-bold mb-3">{title}</h2>
-  {img && <img src={img} alt={imgAlt || title} class="mb-3 w-full object-cover rounded" />}
+  {img && <Image src={img} alt={imgAlt || title} width={400} height={300} class="mb-3 w-full object-cover rounded" />}
   <p class="mb-4">{description}</p>
   {tags && (
     <div class="flex flex-wrap gap-2 mb-3">
